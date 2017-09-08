@@ -1,0 +1,560 @@
+object StonekeepForm: TStonekeepForm
+  Left = 245
+  Top = 299
+  Width = 414
+  Height = 323
+  Caption = 'Stonekeep Hack'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  Menu = MainMenu1
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  object Label1: TLabel
+    Left = 32
+    Top = 26
+    Width = 28
+    Height = 13
+    Caption = 'XPos:'
+  end
+  object Label2: TLabel
+    Left = 32
+    Top = 47
+    Width = 28
+    Height = 13
+    Caption = 'YPos:'
+  end
+  object Label3: TLabel
+    Left = 32
+    Top = 68
+    Width = 45
+    Height = 13
+    Caption = 'Direction:'
+  end
+  object Label4: TLabel
+    Left = 32
+    Top = 90
+    Width = 61
+    Height = 13
+    Caption = 'Castle Level:'
+  end
+  object Label5: TLabel
+    Left = 31
+    Top = 131
+    Width = 43
+    Height = 13
+    Caption = 'Strength:'
+  end
+  object Label6: TLabel
+    Left = 31
+    Top = 152
+    Width = 30
+    Height = 13
+    Caption = 'Agility:'
+  end
+  object Label7: TLabel
+    Left = 31
+    Top = 174
+    Width = 34
+    Height = 13
+    Caption = 'Health:'
+  end
+  object Label8: TLabel
+    Left = 31
+    Top = 211
+    Width = 18
+    Height = 13
+    Caption = 'HP:'
+  end
+  object Label9: TLabel
+    Left = 31
+    Top = 232
+    Width = 41
+    Height = 13
+    Caption = 'Max HP:'
+  end
+  object Label10: TLabel
+    Left = 216
+    Top = 26
+    Width = 34
+    Height = 13
+    Caption = 'Missile:'
+  end
+  object Label11: TLabel
+    Left = 216
+    Top = 47
+    Width = 21
+    Height = 13
+    Caption = 'Axe:'
+  end
+  object Label12: TLabel
+    Left = 216
+    Top = 68
+    Width = 29
+    Height = 13
+    Caption = 'Brawl:'
+  end
+  object Label13: TLabel
+    Left = 216
+    Top = 90
+    Width = 38
+    Height = 13
+    Caption = 'Dagger:'
+  end
+  object Label14: TLabel
+    Left = 216
+    Top = 111
+    Width = 42
+    Height = 13
+    Caption = 'Hammer:'
+  end
+  object Label15: TLabel
+    Left = 216
+    Top = 132
+    Width = 34
+    Height = 13
+    Caption = 'P. Arm:'
+  end
+  object Label16: TLabel
+    Left = 216
+    Top = 153
+    Width = 33
+    Height = 13
+    Caption = 'Sword:'
+  end
+  object Label17: TLabel
+    Left = 216
+    Top = 175
+    Width = 32
+    Height = 13
+    Caption = 'Shield:'
+  end
+  object Label18: TLabel
+    Left = 216
+    Top = 195
+    Width = 36
+    Height = 13
+    Caption = 'Stealth:'
+  end
+  object Label19: TLabel
+    Left = 216
+    Top = 217
+    Width = 32
+    Height = 13
+    Caption = 'Magic:'
+  end
+  object XPosEd: TEdit
+    Left = 96
+    Top = 22
+    Width = 80
+    Height = 21
+    TabOrder = 0
+    Text = '0'
+  end
+  object YPosEd: TEdit
+    Left = 96
+    Top = 43
+    Width = 80
+    Height = 21
+    TabOrder = 2
+    Text = '0'
+  end
+  object DirectEd: TEdit
+    Left = 96
+    Top = 64
+    Width = 80
+    Height = 21
+    TabOrder = 4
+    Text = '0'
+  end
+  object LevelEd: TEdit
+    Left = 96
+    Top = 85
+    Width = 80
+    Height = 21
+    TabOrder = 6
+    Text = '0'
+  end
+  object StrEd: TEdit
+    Left = 95
+    Top = 127
+    Width = 80
+    Height = 21
+    TabOrder = 8
+    Text = '0'
+  end
+  object AgiEd: TEdit
+    Left = 95
+    Top = 148
+    Width = 80
+    Height = 21
+    TabOrder = 10
+    Text = '0'
+  end
+  object HeaEd: TEdit
+    Left = 95
+    Top = 169
+    Width = 80
+    Height = 21
+    TabOrder = 12
+    Text = '0'
+  end
+  object HpEd: TEdit
+    Left = 95
+    Top = 207
+    Width = 80
+    Height = 21
+    TabOrder = 14
+    Text = '0'
+  end
+  object MaxHp: TEdit
+    Left = 95
+    Top = 228
+    Width = 80
+    Height = 21
+    TabOrder = 16
+    Text = '0'
+  end
+  object MissileEd: TEdit
+    Left = 280
+    Top = 22
+    Width = 80
+    Height = 21
+    TabOrder = 18
+    Text = '0'
+  end
+  object AxeEd: TEdit
+    Left = 280
+    Top = 43
+    Width = 80
+    Height = 21
+    TabOrder = 20
+    Text = '0'
+  end
+  object BrawlEd: TEdit
+    Left = 280
+    Top = 64
+    Width = 80
+    Height = 21
+    TabOrder = 22
+    Text = '0'
+  end
+  object DaggerEd: TEdit
+    Left = 280
+    Top = 85
+    Width = 80
+    Height = 21
+    TabOrder = 24
+    Text = '0'
+  end
+  object HammerEd: TEdit
+    Left = 280
+    Top = 107
+    Width = 80
+    Height = 21
+    TabOrder = 26
+    Text = '0'
+  end
+  object PArmEd: TEdit
+    Left = 280
+    Top = 128
+    Width = 80
+    Height = 21
+    TabOrder = 28
+    Text = '0'
+  end
+  object SwordEd: TEdit
+    Left = 280
+    Top = 149
+    Width = 80
+    Height = 21
+    TabOrder = 30
+    Text = '0'
+  end
+  object ShieldEd: TEdit
+    Left = 280
+    Top = 170
+    Width = 80
+    Height = 21
+    TabOrder = 32
+    Text = '0'
+  end
+  object StealthEd: TEdit
+    Left = 280
+    Top = 191
+    Width = 80
+    Height = 21
+    TabOrder = 34
+    Text = '0'
+  end
+  object MagicEd: TEdit
+    Left = 280
+    Top = 212
+    Width = 80
+    Height = 21
+    TabOrder = 36
+    Text = '0'
+  end
+  object XPosUd: TUpDown
+    Left = 176
+    Top = 22
+    Width = 12
+    Height = 21
+    Associate = XPosEd
+    Min = -32768
+    Max = 32767
+    Position = 0
+    TabOrder = 1
+    Wrap = False
+  end
+  object YPosUd: TUpDown
+    Left = 176
+    Top = 43
+    Width = 12
+    Height = 21
+    Associate = YPosEd
+    Min = -32768
+    Max = 32767
+    Position = 0
+    TabOrder = 3
+    Wrap = False
+  end
+  object DirectUd: TUpDown
+    Left = 176
+    Top = 64
+    Width = 12
+    Height = 21
+    Associate = DirectEd
+    Min = -32768
+    Max = 32767
+    Position = 0
+    TabOrder = 5
+    Wrap = False
+  end
+  object LevelUd: TUpDown
+    Left = 176
+    Top = 85
+    Width = 12
+    Height = 21
+    Associate = LevelEd
+    Min = -32768
+    Max = 32767
+    Position = 0
+    TabOrder = 7
+    Wrap = False
+  end
+  object StrUd: TUpDown
+    Left = 175
+    Top = 127
+    Width = 12
+    Height = 21
+    Associate = StrEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 9
+    Wrap = False
+  end
+  object AgiUd: TUpDown
+    Left = 175
+    Top = 148
+    Width = 12
+    Height = 21
+    Associate = AgiEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 11
+    Wrap = False
+  end
+  object HeaUd: TUpDown
+    Left = 175
+    Top = 169
+    Width = 12
+    Height = 21
+    Associate = HeaEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 13
+    Wrap = False
+  end
+  object HpUd: TUpDown
+    Left = 175
+    Top = 207
+    Width = 12
+    Height = 21
+    Associate = HpEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 15
+    Wrap = False
+  end
+  object MaxHpUd: TUpDown
+    Left = 175
+    Top = 228
+    Width = 12
+    Height = 21
+    Associate = MaxHp
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 17
+    Wrap = False
+  end
+  object MissileUd: TUpDown
+    Left = 360
+    Top = 22
+    Width = 12
+    Height = 21
+    Associate = MissileEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 19
+    Wrap = False
+  end
+  object AxeUd: TUpDown
+    Left = 360
+    Top = 43
+    Width = 12
+    Height = 21
+    Associate = AxeEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 21
+    Wrap = False
+  end
+  object BrawlUd: TUpDown
+    Left = 360
+    Top = 64
+    Width = 12
+    Height = 21
+    Associate = BrawlEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 23
+    Wrap = False
+  end
+  object DaggerUd: TUpDown
+    Left = 360
+    Top = 85
+    Width = 12
+    Height = 21
+    Associate = DaggerEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 25
+    Wrap = False
+  end
+  object HammerUd: TUpDown
+    Left = 360
+    Top = 107
+    Width = 12
+    Height = 21
+    Associate = HammerEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 27
+    Wrap = False
+  end
+  object PArmUd: TUpDown
+    Left = 360
+    Top = 128
+    Width = 12
+    Height = 21
+    Associate = PArmEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 29
+    Wrap = False
+  end
+  object SwordUd: TUpDown
+    Left = 360
+    Top = 149
+    Width = 12
+    Height = 21
+    Associate = SwordEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 31
+    Wrap = False
+  end
+  object ShieldUd: TUpDown
+    Left = 360
+    Top = 170
+    Width = 12
+    Height = 21
+    Associate = ShieldEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 33
+    Wrap = False
+  end
+  object StealthUd: TUpDown
+    Left = 360
+    Top = 191
+    Width = 12
+    Height = 21
+    Associate = StealthEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 35
+    Wrap = False
+  end
+  object MagicUd: TUpDown
+    Left = 360
+    Top = 212
+    Width = 12
+    Height = 21
+    Associate = MagicEd
+    Min = 0
+    Max = 255
+    Position = 0
+    TabOrder = 37
+    Wrap = False
+  end
+  object MainMenu1: TMainMenu
+    Left = 352
+    Top = 65528
+    object File1: TMenuItem
+      Caption = '&File'
+      object Open1: TMenuItem
+        Caption = '&Open'
+        OnClick = Open1Click
+      end
+      object Save1: TMenuItem
+        Caption = '&Save'
+        OnClick = Save1Click
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Exit1: TMenuItem
+        Caption = 'E&xit'
+        OnClick = Exit1Click
+      end
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = 'SAV'
+    Filter = 'Stonekeep Savegame (*.SAV)|*.SAV'
+    InitialDir = '.'
+    Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
+    Left = 382
+    Top = 65528
+  end
+end

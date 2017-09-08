@@ -1,10 +1,14 @@
 program StonekeepHack;
 
+{$MODE Delphi}
+
 uses
-  Forms,
+  Forms, Interfaces,
   STKPForm in 'src/STKPForm.pas' {StonekeepForm};
 
-{$R *.RES}
+{.$R *.RES}
+
+{$R *.res}
 
 begin
   Application.Initialize;

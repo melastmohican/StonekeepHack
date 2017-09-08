@@ -1,9 +1,11 @@
 unit STKPForm;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Menus, StdCtrls, ComCtrls;
 
 type
@@ -133,7 +135,7 @@ var
 
 implementation
 
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TStonekeepForm.Open1Click(Sender: TObject);
 begin
