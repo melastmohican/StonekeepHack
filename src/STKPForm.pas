@@ -1,51 +1,53 @@
-unit STKPForm;
+
+Unit STKPForm;
 
 {$MODE Delphi}
 
-interface
+Interface
 
-uses
-  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Menus, StdCtrls, ComCtrls;
+Uses 
+LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls,
+Forms, Dialogs,
+Menus, StdCtrls, ComCtrls;
 
-type
-  THeroRec = packed record
+Type 
+  THeroRec = packed Record
     Xcoordinate: SmallInt;
     Ycoordinate: SmallInt;
     DirectionFaced: SmallInt;
     LevelOfTheCastle: SmallInt;
-    SomeUnknownData1: array[0..288] of byte;
+    SomeUnknownData1: array[0..288] Of byte;
     Strength: Byte;
-    SomeUnknownData2: array[0..10] of byte;
+    SomeUnknownData2: array[0..10] Of byte;
     Agility: Byte;
-    SomeUnknownData3: array[0..10] of byte;
+    SomeUnknownData3: array[0..10] Of byte;
     Health: Byte;
-    SomeUnknownData4: array[0..10] of byte;
+    SomeUnknownData4: array[0..10] Of byte;
     CurrentHitPoints: SmallInt;
     MaximumHitPoints: SmallInt;
     MissileSkill: Byte;
-    SomeUnknownData6: array[0..4] of byte;
+    SomeUnknownData6: array[0..4] Of byte;
     AxeSkill: Byte;
-    SomeUnknownData7: array[0..4] of byte;
+    SomeUnknownData7: array[0..4] Of byte;
     BrawlSkill: Byte;
-    SomeUnknownData8: array[0..4] of byte;
+    SomeUnknownData8: array[0..4] Of byte;
     DaggerSkill: Byte;
-    SomeUnknownData9: array[0..4] of byte;
+    SomeUnknownData9: array[0..4] Of byte;
     HammerSkill: Byte;
-    SomeUnknownData10: array[0..4] of byte;
+    SomeUnknownData10: array[0..4] Of byte;
     PArmSkill: Byte;
-    SomeUnknownData11: array[0..4] of byte;
+    SomeUnknownData11: array[0..4] Of byte;
     SwordSkill: Byte;
-    SomeUnknownData12: array[0..4] of byte;
+    SomeUnknownData12: array[0..4] Of byte;
     ShieldSkill: Byte;
-    SomeUnknownData13: array[0..4] of byte;
+    SomeUnknownData13: array[0..4] Of byte;
     StealthSkill: Byte;
-    SomeUnknownData14: array[0..4] of byte;
+    SomeUnknownData14: array[0..4] Of byte;
     MagicSkill: Byte;
-  end;
+  End;
   PHeroRec = ^THeroRec;
 
-  TStonekeepForm = class(TForm)
+  TStonekeepForm = Class(TForm)
     MainMenu1: TMainMenu;
     File1: TMenuItem;
     Open1: TMenuItem;
@@ -110,81 +112,86 @@ type
     ShieldUd: TUpDown;
     StealthUd: TUpDown;
     MagicUd: TUpDown;
-    procedure Open1Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
-    procedure Save1Click(Sender: TObject);
-    procedure Exit1Click(Sender: TObject);
-  private
+    Procedure Open1Click(Sender: TObject);
+    Procedure FormCreate(Sender: TObject);
+    Procedure FormDestroy(Sender: TObject);
+    Procedure Save1Click(Sender: TObject);
+    Procedure Exit1Click(Sender: TObject);
+    Private 
     { Private declarations }
-    HeroRec: THeroRec;    // in-memory hero record
-    FileBuffer: PChar;    // buffer for loading savegame file
-    FileHandle: Integer;  // savegame file handle
-    SizeOfFile: Integer;
-    procedure FillControls(rec: THeroRec);
-    procedure ReadControls(var rec: THeroRec);
-  public
+      HeroRec: THeroRec;
+      // in-memory hero record
+      FileBuffer: PChar;
+      // buffer for loading savegame file
+      FileHandle: Integer;
+      // savegame file handle
+      SizeOfFile: Integer;
+      Procedure FillControls(rec: THeroRec);
+      Procedure ReadControls(Var rec: THeroRec);
+    Public 
     { Public declarations }
-  end;
+  End;
 
-Const
+Const 
   DRAKE_OFFSET = 7;
 
-var
+Var 
   StonekeepForm: TStonekeepForm;
 
-implementation
+Implementation
 
 {$R *.lfm}
 
-procedure TStonekeepForm.Open1Click(Sender: TObject);
-begin
-  with OpenDialog1 do
-    if Execute then
-      begin
+Procedure TStonekeepForm.Open1Click(Sender: TObject);
+Begin
+  With OpenDialog1 Do
+    If Execute Then
+      Begin
         // Open savgefile for R/W operations
-        FileHandle := FileOpen(FileName, fmOpenReadWrite or fmShareDenyNone);
+        FileHandle := FileOpen(FileName, fmOpenReadWrite Or fmShareDenyNone);
+
         // Calculate size of file by jumping to the end of file and reading position
         SizeOfFile := FileSeek(FileHandle,0,2);
         // if FileBuffer is not empty free buffer memory
-        if FileBuffer <> nil then StrDispose(FileBuffer);
+        If FileBuffer <> Nil Then StrDispose(FileBuffer);
         // Allocate meory for file buffer
         FileBuffer := StrAlloc(SizeOfFile+2);
-        if FileHandle > 0 then
-          begin
+        If FileHandle > 0 Then
+          Begin
             // Go back to beginning of file
             FileSeek(FileHandle,0,0);
             // Read file into buffer in memory
-            if FileRead(FileHandle,FileBuffer^,SizeOfFile) > 0 then
-              begin
+            If FileRead(FileHandle,FileBuffer^,SizeOfFile) > 0 Then
+              Begin
                 // Read record from buffer to HeroRec variable
-                Move(PHeroRec(FileBuffer+DRAKE_OFFSET)^,HeroRec,SizeOf(THeroRec));
+                Move(PHeroRec(FileBuffer+DRAKE_OFFSET)^,HeroRec,SizeOf(THeroRec)
+                );
                 FillControls(HeroRec);
-              end;
-          end
-        else
+              End;
+          End
+        Else
           ShowMessage('Open error: FileHandle = negative DOS error code');
         // Cleanup
         StrDispose(FileBuffer);
-        FileBuffer := nil;
-      end;
-end;
+        FileBuffer := Nil;
+      End;
+End;
 
-procedure TStonekeepForm.FormCreate(Sender: TObject);
-begin
-  FileBuffer := nil;
-end;
+Procedure TStonekeepForm.FormCreate(Sender: TObject);
+Begin
+  FileBuffer := Nil;
+End;
 
-procedure TStonekeepForm.FormDestroy(Sender: TObject);
-begin
-  if FileBuffer <> nil then StrDispose(FileBuffer);
-  if FileHandle > 0 then FileClose(FileHandle);
-end;
+Procedure TStonekeepForm.FormDestroy(Sender: TObject);
+Begin
+  If FileBuffer <> Nil Then StrDispose(FileBuffer);
+  If FileHandle > 0 Then FileClose(FileHandle);
+End;
 
-procedure TStonekeepForm.FillControls(rec: THeroRec);
-begin
-  with rec do
-    begin
+Procedure TStonekeepForm.FillControls(rec: THeroRec);
+Begin
+  With rec Do
+    Begin
       XPosEd.Text   := IntToStr(Xcoordinate);
       YPosEd.Text   := IntToStr(Ycoordinate);
       DirectEd.Text := IntToStr(DirectionFaced);
@@ -194,7 +201,7 @@ begin
       HeaEd.Text    := IntToStr(Health);
       HpEd.Text     := IntToStr(CurrentHitPoints);
       MaxHp.Text    := IntToStr(MaximumHitPoints);
-      MissileEd.Text:= IntToStr(MissileSkill);
+      MissileEd.Text := IntToStr(MissileSkill);
       AxeEd.Text    := IntToStr(AxeSkill);
       BrawlEd.Text  := IntToStr(BrawlSkill);
       DaggerEd.Text := IntToStr(DaggerSkill);
@@ -202,15 +209,15 @@ begin
       PArmEd.Text   := IntToStr(PArmSkill);
       SwordEd.Text  := IntToStr(SwordSkill);
       ShieldEd.Text := IntToStr(ShieldSkill);
-      StealthEd.Text:= IntToStr(StealthSkill);
+      StealthEd.Text := IntToStr(StealthSkill);
       MagicEd.Text  := IntToStr(MagicSkill);
-    end;
-end;
+    End;
+End;
 
-procedure TStonekeepForm.ReadControls(var rec: THeroRec);
-begin
-  with rec do
-    begin
+Procedure TStonekeepForm.ReadControls(Var rec: THeroRec);
+Begin
+  With rec Do
+    Begin
       Xcoordinate      := StrToIntDef(XPosEd.Text,0);
       Ycoordinate      := StrToIntDef(YPosEd.Text,0);
       DirectionFaced   := StrToIntDef(DirectEd.Text,0);
@@ -230,26 +237,26 @@ begin
       ShieldSkill      := StrToIntDef(ShieldEd.Text,0);
       StealthSkill     := StrToIntDef(StealthEd.Text,0);
       MagicSkill       := StrToIntDef(MagicEd.Text,0);
-    end;
-end;
+    End;
+End;
 
-procedure TStonekeepForm.Save1Click(Sender: TObject);
-begin
-  if FileBuffer =  nil then exit;
+Procedure TStonekeepForm.Save1Click(Sender: TObject);
+Begin
+  If FileBuffer =  Nil Then exit;
   ReadControls(HeroRec);
   Move(HeroRec,PHeroRec(FileBuffer+DRAKE_OFFSET)^,SizeOf(THeroRec));
-  if FileHandle > 0 then
-    begin
+  If FileHandle > 0 Then
+    Begin
       // Go to beginning of file
       FileSeek(FileHandle,0,0);
       // Write buffer into file
       FileWrite(FileHandle,FileBuffer^,SizeOfFile);
-    end;
-end;
+    End;
+End;
 
-procedure TStonekeepForm.Exit1Click(Sender: TObject);
-begin
+Procedure TStonekeepForm.Exit1Click(Sender: TObject);
+Begin
   Close;
-end;
+End;
 
-end.
+End.
